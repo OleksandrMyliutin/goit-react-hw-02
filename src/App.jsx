@@ -2,6 +2,7 @@ import Description from './components/Description/Description'
 import Options from './components/Options/Options'
 import Feedback from './components/Feedback/Feedback'
 import { useState, useEffect } from "react";
+import Notification from './components/Notification/Notification';
 
 const App = () => { 
   const marks = {
@@ -38,7 +39,8 @@ const App = () => {
     <>
       <Description />
       <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} resetUpdate={resetUpdate}/>
-      <Feedback positive ={positive} totalFeedback={totalFeedback} good={clicks.good} neutral={clicks.neutral} bad={clicks.bad}/>
+      {totalFeedback > 0 && (<Feedback positive ={positive} totalFeedback={totalFeedback} good={clicks.good} neutral={clicks.neutral} bad={clicks.bad}/>)}
+      {totalFeedback <= 0 && (<Notification  totalFeedback={totalFeedback}/>)}
     </>
   )
 }
